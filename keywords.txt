@@ -1,0 +1,23 @@
+#
+#	Syntax Colouring for unusedPins Library
+#
+
+#	Created in VS Code (from user Template) on:  2019-08-26
+#	Created by: sunkm
+
+
+# Datatypes (Such as Objects)
+SunkTemp	KEYWORD1
+
+
+# Methods/Functions
+sunkTemp	KEYWORD2
+setResolution	KEYWORD2
+requestTemp	KEYWORD2
+returnRawTemp	KEYWORD2
+returnRawTempInteger	KEYWORD2
+getTemp	KEYWORD2
+
+
+# Constants
+# KEYWORD3
