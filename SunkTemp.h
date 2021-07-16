@@ -10,9 +10,12 @@
 
 class SunkTemp
 {
-	public:
+	public:		
 		// Constructor - Pass HW Pin for 1-Wire bus
 		SunkTemp(OneWire owObject);
+		
+		// Reset the device - stops any current temp measurments
+		void SunkTemp::reset(void);
 
 		// begin - Set resolution if variable passed, Default: 12
 		void begin(uint8_t res = 12);
@@ -31,19 +34,51 @@ class SunkTemp
 
 		// Get & Convert new Raw data and return human-readable integer with specified # of decimal places 
 		int32_t getTemp(uint8_t decimalPlaces = 3);
+		
+		void setTempHighAlarm(int8_t tempHighAlarm);
+		void setTempLowAlarm(int8_t tempLowAlarm);
+		int8_t getTempHighAlarm(void);
+		int8_t getTempLowAlarm(void);
+		
+		int8_t showscratchpadUser1(void);
+		int8_t showscratchpadUser2(void);
+		
+		void setUserByte1(int8_t user1);
+		void setUserByte2(int8_t user2);
+		void setUserBytes(int8_t user1, int8_t user2);
+		void setUserDataInt(int16_t userInteger);		// Set user data as a single 16-bit integer
+		
+		int16_t getUserDataInt(void);
+		int8_t	getUserByte1(void);
+		int8_t	getUserByte2(void);
 
+		void pullEEPROM(void);
+		void pushEEPROM(void);
 	
 	protected:
 	private:
+		// Working Array for dealing with the Scratchpad
+		uint8_t	scratchpad[9];
+		
+		// Get the entire Scratchpad from the device
+		void pullScratchpad(uint8_t scratchpad[9]);
+		
+		// write Scratchpad variable onto device scratchpad 
+		void pushScratchpad(uint8_t scratchpad[9]);		
+		
 		OneWire _oneWire;
-		byte _rawData[2];
+		
+		uint8_t _rawData[2];
+		
 		// Data converted to human readable value ±x.yyyy with 0.0625 max resolution
-		signed long _temp;
+		int32_t _temp;
 
 		// Get the Raw Temperature readings from sensor
 		void getRawData(void);
 		
 		void convertData(void);
+
+
 };
 
 #endif	// SunkTemp_H
