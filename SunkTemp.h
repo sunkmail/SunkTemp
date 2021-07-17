@@ -15,7 +15,7 @@ class SunkTemp
 		SunkTemp(OneWire owObject);
 		
 		// Reset the device - stops any current temp measurments
-		void SunkTemp::reset(void);
+		void reset(void);
 
 		// begin - Set resolution if variable passed, Default: 12
 		void begin(uint8_t res = 12);
